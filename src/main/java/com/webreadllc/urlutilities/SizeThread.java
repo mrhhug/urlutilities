@@ -1,4 +1,4 @@
-package com.mycompany.urlutilities;
+package com.webreadllc.urlutilities;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,8 +8,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.concurrent.Callable;
 
-public class SizeThread implements Callable<SizeReturn>
-{
+/**
+ * @author michael
+ */
+public class SizeThread implements Callable<SizeReturn> {
+    
     private final String potentialURL;
 
     public SizeThread(String potentialURL) {
@@ -75,5 +78,22 @@ public class SizeThread implements Callable<SizeReturn>
         }
         //might check for -1 then throw exception?
         return bytes;
+    }
+}
+
+//make this public for java APIs
+class SizeReturn {
+    
+    String url;
+    long size;
+
+    public SizeReturn(String url, long size) {
+        this.url = url;
+        this.size = size;
+    }
+
+    @Override
+    public String toString() {
+        return url + "," + size;
     }
 }
